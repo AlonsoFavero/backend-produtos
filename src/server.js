@@ -9,7 +9,7 @@ conectar()
 
 const produtoRoutes = require("./routes/produtos.routes")
 
-app.use(produtoRoutes)
+app.use("/produtos", produtoRoutes)
 
 app.listen(3000, () => {
     console.log("Servidor rodando na porta 3000")

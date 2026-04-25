@@ -1,22 +1,41 @@
 
-const produtos = require("../../data/produtos")
+const produto = require("../models/produto.model")
 
-function listar(min,max, nome){
-
-    let resultado = [...produtos]
-
-    if(!isNaN(min)){
-       resultado = resultado.filter(p => p.preco >= min)
-    }
-      if (!isNaN(max)){
-        resultado = resultado.filter(p => p.preco <= max)
-      }
-
-      if (nome) {
-        resultado = resultado.filter(p => p.nome.toLowerCase().includes(nome.toLowerCase())
-    )
-      }
-      return resultado
-
-
+async function criar(nome, preco){
+const novoProduto = await produto.create({nome, preco })
+return novoProduto
 }
+
+async function listar(){
+  const produtos = await produto.find()
+  return produtos
+}
+
+async function buscarPorId(id){
+ const produtoEncontrado = await produto.findById(id)
+ return produtoEncontrado
+}
+
+async function deletar(id){
+  const produtoDeletado = await produto.findByIdAndDelete(id)
+  return produtoDeletado
+}
+
+async function atualizar (id, dados){
+  const produtoAtualizado = await produto.findByIdAndUpdate(
+    id,
+    dados,
+    {new: true}
+  )
+  return produtoAtualizado
+}
+
+module.exports = {
+  criar,
+  listar,
+  buscarPorId, 
+  deletar,
+  atualizar
+}
+
+

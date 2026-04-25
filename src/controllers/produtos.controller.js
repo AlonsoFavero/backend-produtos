@@ -1,9 +1,21 @@
+
 const service = require("../services/produtos.service")
 
-function buscarProdutoPorId(req, res){
- 
-    const id = Number (req.params.id)
-    const produto = produtos.find(p => p.id === id)
+async function listarProdutos(req,res){
+ try{
+   const produtos = await service.listar()
+    return res.json(produtos)
+
+}catch(erro){
+    res.status(500).json({"erro": "erro interno do servidor"})
+ }
+
+}
+
+async  function buscarProdutoPorId(req, res){
+ const {id} = req.params
+  
+ const produto = await service.buscarPorId(id)
 
     if (!produto) {
         return res.status(404).json({ erro: "produto não encontrado "})
@@ -13,50 +25,51 @@ function buscarProdutoPorId(req, res){
 
 }
 
-function criarProduto(req, res){
- 
+async function criarProduto(req, res){
     const {nome, preco} = req.body
    
-    if(!nome || preco === undefined) {
-        return res.status(400).json({ erro: "nome e preco são obrigatorios"})
-    }
-     const novoProduto = service.criar(nome, preco)
+     const novoProduto = await service.criar(nome, preco)
       
     return res.status(201).json(novoProduto)
 
 }
 
-function deletarProdutos(req, res){
+async function deletarProdutos(req, res){
+    const {id} = req.params
 
-    const id = Number(req.params.id)
-    const ok = service.deletar(id)
+    const produto = await service.deletar(id)
 
-    if (!ok){
-       return res.status(404).json({erro:"produto não encontrado"})
+    if (!produto) {
+        return res.status(404).json({ erro: "produto não encontrado "})
     }
 
-    return res.json({mensagem: "produto removido"})
-
-
+    return res.json({ mensagem: "produto removido com sucesso"})
 }
 
-function listarProdutos(req,res){
- const {min, max, nome} = req.query
+async function atualizarProdutos(req, res) {
+    const {id} = req.params
+    const {nome, preco} = req.body
 
- const resultado = service.listar(
-    Number(min),
-    Number(max),
-    nome
- )
- res.json(resultado)
+    try{
+    const produto = await service.atualizar(id, {nome, preco})
+
+    if(!produto) {
+        return res.status(404).json({ erro: "produto não econtrado"})
+    }
+    return res.json(produto)
+
+    }catch(erro){
+    res.status(500).json({"erro": "erro interno do servidor"})
+ }
+
 }
-
 
 module.exports = {
     listarProdutos,
     buscarProdutoPorId,
     criarProduto,
-    deletarProdutos
+    deletarProdutos,
+    atualizarProdutos
 }
 
 

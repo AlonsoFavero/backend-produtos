@@ -2,9 +2,14 @@ const mongoose = require("mongoose")
 
 async function conectar(){
 
-await mongoose.connect("mongodb://127.0.0.1:27017/produtosDB")
-console.log("mongoBD conectado")
-} 
+    try{
 
+    await mongoose.connect("mongodb+srv://AlonsoFaveroFilho:22062008@cluster0.ixmpdbb.mongodb.net/meubanco")
+
+console.log("conectado")
+    } catch (erro){
+       console.log("erro")
+    }
+}
 module.exports = conectar
 
