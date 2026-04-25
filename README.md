@@ -4,7 +4,7 @@ API REST desenvolvida com **Node.js**, **Express** e **MongoDB** para gerenciame
 
 ---
 
-## 🚀 Tecnologias utilizadas
+##  Tecnologias utilizadas
 
 * Node.js
 * Express
@@ -14,7 +14,7 @@ API REST desenvolvida com **Node.js**, **Express** e **MongoDB** para gerenciame
 
 ---
 
-## 🧠 Arquitetura
+##  Arquitetura
 
 O projeto segue o padrão de **arquitetura em camadas**, separando responsabilidades:
 
@@ -40,12 +40,13 @@ src/
 
 ---
 
-## ⚙️ Como executar o projeto
+##  Como executar o projeto
 
 ### 1. Clonar o repositório
 
 ```bash
 git clone https://github.com/AlonsoFavero/backend-produtos
+
 ```
 
 ---
@@ -76,9 +77,9 @@ src/database.js
 
 ---
 
-## 🔗 Endpoints da API
+##  Endpoints da API
 
-### ➕ Criar produto
+###  Criar produto
 
 ```http
 POST /produtos
@@ -95,7 +96,7 @@ Body:
 
 ---
 
-### 📄 Listar produtos
+###  Listar produtos
 
 ```http
 GET /produtos
@@ -103,7 +104,7 @@ GET /produtos
 
 ---
 
-### 🔍 Buscar produto por ID
+###  Buscar produto por ID
 
 ```http
 GET /produtos/:id
@@ -111,7 +112,7 @@ GET /produtos/:id
 
 ---
 
-### ✏️ Atualizar produto
+###  Atualizar produto
 
 ```http
 PUT /produtos/:id
@@ -128,7 +129,7 @@ Body:
 
 ---
 
-### ❌ Deletar produto
+###  Deletar produto
 
 ```http
 DELETE /produtos/:id
@@ -136,7 +137,7 @@ DELETE /produtos/:id
 
 ---
 
-## 📥 Exemplo de resposta
+##  Exemplo de resposta
 
 ```json
 {
@@ -149,7 +150,7 @@ DELETE /produtos/:id
 
 ---
 
-## 🧠 Aprendizados
+##  Aprendizados
 
 Durante o desenvolvimento deste projeto, foram aplicados conceitos importantes como:
 
@@ -162,9 +163,9 @@ Durante o desenvolvimento deste projeto, foram aplicados conceitos importantes c
 
 ---
 
-## 📌 Status do projeto
+##  Status do projeto
 
-🚧 Em evolução — melhorias e novas funcionalidades serão adicionadas.
+ Em evolução — melhorias e novas funcionalidades serão adicionadas.
 
 ---
 
