@@ -4,10 +4,14 @@ const service = require("../services/produtos.service")
 async function listarProdutos(req,res){
  try{
    const produtos = await service.listar()
-    return res.json(produtos)
 
-}catch(erro){
-    res.status(500).json({"erro": "erro interno do servidor"})
+   return res.status(200).json({
+        message: "produtos encontrados com sucesso",
+        data: produtos
+    })
+}
+catch(error){
+  return res.status(500).json({"error": "erro interno do servidor"})
  }
 
 }
@@ -17,11 +21,14 @@ async  function buscarProdutoPorId(req, res){
   
  const produto = await service.buscarPorId(id)
 
-    if (!produto) {
-        return res.status(404).json({ erro: "produto não encontrado "})
-    }
+   if(!produto){
+    return res.status(404).json({error: "produto não encontrado"})
+   }
 
-    return res.json(produto)
+     return res.status(200).json({
+        message: "produto encontrado com sucesso",
+        data: produto
+    })
 
 }
 
@@ -29,8 +36,13 @@ async function criarProduto(req, res){
     const {nome, preco} = req.body
    
      const novoProduto = await service.criar(nome, preco)
-      
-    return res.status(201).json(novoProduto)
+
+    return res.status(201).json({
+        message: "produto criado com sucesso",
+        data: novoProduto
+    })
+
+
 
 }
 
@@ -40,10 +52,12 @@ async function deletarProdutos(req, res){
     const produto = await service.deletar(id)
 
     if (!produto) {
-        return res.status(404).json({ erro: "produto não encontrado "})
-    }
+        return res.status(404).json({error: "produto não encontrado"})
+}
 
-    return res.json({ mensagem: "produto removido com sucesso"})
+return res.status(200).json({
+    message:"produto removido com sucesso"
+   })
 }
 
 async function atualizarProdutos(req, res) {
@@ -54,12 +68,15 @@ async function atualizarProdutos(req, res) {
     const produto = await service.atualizar(id, {nome, preco})
 
     if(!produto) {
-        return res.status(404).json({ erro: "produto não econtrado"})
+        return res.status(404).json({ error: "produto não encontrado"})
     }
-    return res.json(produto)
+   return res.status(200).json({
+    message:"produto atualizado com sucesso",
+    data: produto
+   })
 
     }catch(erro){
-    res.status(500).json({"erro": "erro interno do servidor"})
+   return res.status(500).json({"error": "erro interno do servidor"})
  }
 
 }

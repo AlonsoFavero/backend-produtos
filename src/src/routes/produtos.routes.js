@@ -11,7 +11,7 @@ const {
 const {
     validarProdutos,
     validarId
-} = require("../../middlewares/validarProdutos.middleware")
+} = require("../middlewares/validarProdutos.middleware")
 
 const router = Router()
 
